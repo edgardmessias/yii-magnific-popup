@@ -66,5 +66,3 @@ class EBaseMagnificPopup extends CWidget {
     }
 
 }
-
-?>

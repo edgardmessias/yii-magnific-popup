@@ -41,5 +41,3 @@ class EGroupMagnificPopup extends EBaseMagnificPopup {
     }
 
 }
-
-?>
