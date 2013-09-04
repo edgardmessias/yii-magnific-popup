@@ -21,10 +21,11 @@ class EGroupMagnificPopup extends EBaseMagnificPopup {
 
     public $tagName = 'div';
     public $htmlOptions = array();
+    public $delegate = 'a';
 
     public function init() {
         $this->defaultOptions = CMap::mergeArray($this->defaultOptions, array(
-                    'delegate' => 'a',
+                    'delegate' => $this->delegate,
         ));
         $this->target = '#' . $this->id;
         echo CHtml::openTag($this->tagName, array('id' => $this->id), $this->htmlOptions);
