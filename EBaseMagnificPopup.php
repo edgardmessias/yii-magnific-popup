@@ -25,7 +25,7 @@ class EBaseMagnificPopup extends CWidget {
      * Run this widget.
      * This method registers necessary javascript.
      */
-    public function init() {
+    public function run() {
 
         $options = CMap::mergeArray($this->options, $this->defaultOptions);
         $optionsJs = CJavaScript::encode($options);
