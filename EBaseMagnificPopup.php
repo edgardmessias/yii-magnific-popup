@@ -20,6 +20,7 @@ class EBaseMagnificPopup extends CWidget {
     public $defaultOptions = array(
         'type' => 'image'
     );
+    public $language;
 
     /**
      * Run this widget.
@@ -45,6 +46,19 @@ class EBaseMagnificPopup extends CWidget {
         if (is_dir($assets)) {
             Yii::app()->clientScript->registerCoreScript('jquery');
             Yii::app()->clientScript->registerScriptFile($baseUrl . '/jquery.magnific-popup' . (!YII_DEBUG ? '.min' : '') . '.js', CClientScript::POS_HEAD);
+
+            if ($this->language == null) {
+                $this->language = strtolower(Yii::app()->language);
+            }
+            if ($this->language) {
+                $avaliableLanguages = array('pt-br');
+
+                if (in_array($this->language, $avaliableLanguages)) {
+                    Yii::app()->clientScript->registerScriptFile($baseUrl . '/locales/jquery.magnific-popup.' . $this->language . '.js', CClientScript::POS_HEAD);
+                } elseif (in_array(substr($this->language, 0, 2), $avaliableLanguages)) {
+                    Yii::app()->clientScript->registerScriptFile($baseUrl . '/locales/jquery.magnific-popup.' . substr($this->language, 0, 2) . '.js', CClientScript::POS_HEAD);
+                }
+            }
             Yii::app()->clientScript->registerCssFile($baseUrl . '/magnific-popup.css');
         } else {
             throw new Exception('EBaseMagnificPopup - Error: Couldn\'t find assets to publish.');
