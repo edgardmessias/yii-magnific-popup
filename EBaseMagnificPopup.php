@@ -21,12 +21,31 @@ class EBaseMagnificPopup extends CWidget {
         'type' => 'image'
     );
     public $language;
+    public $effect;
 
     /**
      * Run this widget.
      * This method registers necessary javascript.
      */
     public function run() {
+
+        $effectList = array('fade', 'with-zoom', 'zoom-in', 'newspaper', 'move-horizontal', 'move-from-top', '3d-unfold', 'zoom-out');
+        if ($this->effect && in_array($this->effect, $effectList)) {
+            $this->defaultOptions['mainClass'] = 'mfp-' . $this->effect;
+            $this->defaultOptions['removalDelay'] = 500;
+            $this->defaultOptions['callbacks'] = array(
+                'beforeOpen' => new CJavaScriptExpression("function(){this.st.image.markup = this.st.image.markup.replace('mfp-figure', 'mfp-figure mfp-with-anim');}")
+            );
+
+            if ($this->effect == 'with-zoom') {
+                $this->defaultOptions = CMap::mergeArray($this->defaultOptions, array(
+                            'zoom' => array(
+                                'enabled' => true,
+                            ),
+                ));
+            }
+        }
+
 
         $options = CMap::mergeArray($this->options, $this->defaultOptions);
         $optionsJs = CJavaScript::encode($options);
@@ -60,6 +79,9 @@ class EBaseMagnificPopup extends CWidget {
                 }
             }
             Yii::app()->clientScript->registerCssFile($baseUrl . '/magnific-popup.css');
+            if ($this->effect && (isset($this->defaultOptions['mainClass']) && $this->defaultOptions['mainClass'])) {
+                Yii::app()->clientScript->registerCssFile($baseUrl . '/magnific-popup.effects.css');
+            }
         } else {
             throw new Exception('EBaseMagnificPopup - Error: Couldn\'t find assets to publish.');
         }
