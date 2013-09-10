@@ -16,12 +16,13 @@
 class EBaseMagnificPopup extends CWidget {
 
     public $target;
-    public $options;
+    public $options = array();
     public $defaultOptions = array(
         'type' => 'image'
     );
     public $language;
     public $effect;
+    public $type;
 
     /**
      * Run this widget.
@@ -46,8 +47,11 @@ class EBaseMagnificPopup extends CWidget {
             }
         }
 
+        if ($this->type !== null) {
+            $this->options['type'] = $this->type;
+        }
 
-        $options = CMap::mergeArray($this->options, $this->defaultOptions);
+        $options = CMap::mergeArray($this->defaultOptions, $this->options);
         $optionsJs = CJavaScript::encode($options);
         $js = "jQuery('{$this->target}').magnificPopup($optionsJs);";
 
