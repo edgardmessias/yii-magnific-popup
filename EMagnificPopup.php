@@ -8,20 +8,46 @@
  */
 
 /**
- * Description of EBaseMagnificPopup
+ * Description of EMagnificPopup
  *
  * @see http://dimsemenov.com/plugins/magnific-popup/
  * @author Edgard Lorraine Messias <edgardmessias@gmail.com>
  */
 class EMagnificPopup extends CWidget {
 
+    /**
+     * Jquery selector to which element should apply the magnific-popup.
+     * @var string jQuery Selector
+     */
     public $target;
+
+    /**
+     * Options in the documentation for magnific-popup
+     * @see http://dimsemenov.com/plugins/magnific-popup/documentation.html
+     * @var array Magnific-Popup Option
+     */
     public $options = array();
     public $defaultOptions = array(
         'type' => 'image'
     );
+
+    /**
+     * Language for internationalization.
+     * Null for auto detect.
+     * @var string 
+     */
     public $language;
+    
+    /**
+     * Effects in http://codepen.io/dimsemenov/pen/GAIkt
+     * @var string  
+     */
     public $effect;
+    
+    /**
+     * Alias for 'type' in option;
+     * @var type string
+     */
     public $type;
 
     /**
