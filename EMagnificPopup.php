@@ -13,7 +13,7 @@
  * @see http://dimsemenov.com/plugins/magnific-popup/
  * @author Edgard Lorraine Messias <edgardmessias@gmail.com>
  */
-class EBaseMagnificPopup extends CWidget {
+class EMagnificPopup extends CWidget {
 
     public $target;
     public $options = array();

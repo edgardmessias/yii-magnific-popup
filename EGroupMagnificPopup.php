@@ -17,7 +17,7 @@ Yii::import($alias . '.EBaseMagnificPopup');
  * @see http://dimsemenov.com/plugins/magnific-popup/
  * @author Edgard Lorraine Messias <edgardmessias@gmail.com>
  */
-class EGroupMagnificPopup extends EBaseMagnificPopup {
+class EGroupMagnificPopup extends EMagnificPopup {
 
     public $tagName = 'div';
     public $htmlOptions = array();

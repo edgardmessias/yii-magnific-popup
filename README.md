@@ -17,7 +17,7 @@ Magnific Popup is a responsive jQuery lightbox plugin that is focused on perform
 ```
 ```php
 <?php
-$this->widget("ext.magnific-popup.EBaseMagnificPopup", array('target' => '.test-popup-link'));
+$this->widget("ext.magnific-popup.EMagnificPopup", array('target' => '.test-popup-link'));
 ?>
 ```
 
